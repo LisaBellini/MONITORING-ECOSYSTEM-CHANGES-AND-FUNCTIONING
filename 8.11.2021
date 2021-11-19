@@ -1,4 +1,4 @@
-> install.packages("raster")
+> install.packages('raster')
 Installazione pacchetto in ‘C:/Users/lisab/Documents/R/win-library/4.1’
 (perché ‘lib’ non è specificato)
 --- Per piacere, seleziona un mirror CRAN per la sessione ---
@@ -78,5 +78,15 @@ plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
 > plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
 > plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")
 > par(mfrow=c(2,2))
-
-
+##### 19.11.2021
+#we downloaded 2  imagines of a forest in brasil in order to analise them to see the deforestation
+> install.packages('raster')
+ > library(raster)
+ > setwd("C:/lab/")
+ > install.packages("rgdal")
+ > library(rgdal)
+ > l1992 <- brick("defor1_.jpg") #loading the img of 1992
+> l1992
+> #we can use 3 bands
+> #plotRGB
+> plot(l1992, r=1, g=2, v=3, stretch="Lin")
