@@ -90,3 +90,56 @@ plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
 > #we can use 3 bands
 > #plotRGB
 > plot(l1992, r=1, g=2, v=3, stretch="Lin")
+### 25.11.2021
+class(NULL)
+#NULL can be used to remove columns/rows from a chart/values
+a<- sum(1:3)
+a
+a<- print("hello")
+a<- plot(1:10, 1:10)
+##remember that NULL represent emptyness
+NA #means not avalabile, represent missing values
+vec<- c(1, 5, 6.7, NA, 10)
+class(vec)
+is.na(vec)
+class(NA)
+typeof(NA)
+na.omit(c(1, 2, 3, NA))##u omit the fourth element, it's a way to sanitase 
+##the vector bc NA it's contagious
+na.omit(c(NA,2,3,NA))
+FALSE & NA
+TRUE & FALSE
+FALSE & TRUE 
+FALSE & FALSE
+TRUE | NA
+TRUE | FALSE
+FALSE | TRUE
+TRUE | TRUE
+is.na(NA)
+is.na(c(1,2,3, NA))
+length(NA)
+length(NULL)
+NaN #not a number
+0/0
+class(NaN)
+typeof(NaN)
+length(NaN)
+install.packages("vegan")#vegetation analysis, general ecological function
+library(vegan)
+install.packages("swirl")
+library(swirl)
+rm(list = ls())## free and fast lessons on how to use R
+vignette("intro-swirl")#gives u information, u can also search for the specific 
+#topic, it opens a PDF file
+##
+x<- 42
+log(x)
+sqrt(log(x))
+log_x<- log(x)
+sqrt(log_x)
+#x->f()->g()= g(f(x))
+42 |> log() |> sqrt() #easiest way to tipe, most clear
+
+
+
+
