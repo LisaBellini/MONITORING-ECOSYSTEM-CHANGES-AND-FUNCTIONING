@@ -139,7 +139,15 @@ log_x<- log(x)
 sqrt(log_x)
 #x->f()->g()= g(f(x))
 42 |> log() |> sqrt() #easiest way to tipe, most clear
-
-
+### 26.11.2021
+install.packages('raster')
+library(raster)
+setwd("C:/lab/")
+install.packages("ggplot2")
+install.packages("gridExtra")
+install.packages("ncdf4")
+EN<-stack(en01,en02,en03,en04,en05,en06,en07,en08,en09,en10,en11,en12)
+plot(EN, col=cl)
+EN
 
 
