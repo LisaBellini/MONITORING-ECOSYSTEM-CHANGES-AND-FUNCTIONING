@@ -149,5 +149,23 @@ install.packages("ncdf4")
 EN<-stack(en01,en02,en03,en04,en05,en06,en07,en08,en09,en10,en11,en12)
 plot(EN, col=cl)
 EN
-
+####29.11.21
+> ##importing all the data together with lapply function
+> setwd("C:/lab/en/")
+> setwd("C:/lab/EN/")
+> list.files(pattern="EN")
+> rlist<- list.files(pattern="EN")
+> rlist
+> list_raster <-lapply(rlist,raster)
+> list_raster
+> EN_stack<- stack(list_raster)
+> EN_stack
+cl<- colorRampPalette(c('red','orange','yellow'))(100)
+> plot(EN_stack, col=cl)
+> ##plot a single imagine
+> plot(EN_stack$EN_0001, col=cl)
+> ENdif<- EN_stack$EN_0001-EN_stack$EN_0013
+> cldif<- colorRampPalette(c('blue','white','red'))(100)
+> plot(ENdif, col=cldif)
+> #it shows thedifference between min e max (first and last imgs)
 
