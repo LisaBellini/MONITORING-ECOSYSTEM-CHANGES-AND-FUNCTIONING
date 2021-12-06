@@ -168,4 +168,53 @@ cl<- colorRampPalette(c('red','orange','yellow'))(100)
 > cldif<- colorRampPalette(c('blue','white','red'))(100)
 > plot(ENdif, col=cldif)
 > #it shows thedifference between min e max (first and last imgs)
-
+## 06.12.2021
+> library(raster)
+> library(RStoolbox)
+> library(ggplot2)
+> setwd("C:/lab/")
+> rllist<-list.files(pattern="defor")
+> rllist
+> list_rast<-lapply(rllist,brick)
+> list_rast
+> l1992<-list_rast[[1]]
+> l2006<-list_rast[[2]]
+> plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
+> #unsupervised classification, we are just tellin the prog which classes we gonna use
+> l1992<- unsuperClass(l1992, nClasses=2)
+> l1992
+> #here u don't have many different continous classes, but just 1 with all the infos, 4 this reason it's called LAYER
+> plot(l1992$map)
+> freq(l1992$map)
+     value  count
+[1,]     1  34906
+[2,]     2 306386
+> total<- 341292
+> propagri<- 34906/total
+> propforest<- 306386/total
+> propagri
+> propforest
+> #now we build the dataset
+> cover<- c("forest", "agriculture")
+> prop1992<-c(propagri, propforest)
+> proportion1992<- data.frame(cover, prop1992)
+> proportion1992
+> ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white")
+> 
+> ##now the same but with 2006
+> plotRGB(l2006,r=1, g=2, b=3, stretch="lin")
+> l2006<-unsuperClass(l2006, nClasses=2)
+> l2006
+> l2006<- list_rast[[2]]
+> total<- 341292
+> propagri2006<- 34710/total2006
+> propforest2006<- 306582/total2006
+> propagri2006
+> propforest2006
+> prop2006<- c(propagri2006, propforest2006)
+> proportion2006<-data.frame(cover, prop1992, prop2006)
+> ggplot(proportion2006, aes(x=cover, y=prop2006, color=cover))+ geom_bar(stat="identity", fill="white")
+> #now we compare the 2 years to see how the land use has changed
+> p1 <- ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white")
+> p2 <- ggplot(proportion2006, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white")
+> grid.arrange(p1,p2,nrows=1)
