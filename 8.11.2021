@@ -218,3 +218,56 @@ cl<- colorRampPalette(c('red','orange','yellow'))(100)
 > p1 <- ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white")
 > p2 <- ggplot(proportion2006, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white")
 > grid.arrange(p1,p2,nrows=1)
+13.12.2021
+#check if all the library are correctly downloaded
+> library(RStoolbox)
+> library(ggplot2)
+> library(gridExtra)
+> setwd("C:/lab/")
+> rlist<-list.files(pattern="defor") #importing files
+> rlist
+> list_rast<-lapply(rlist,brick) #apllying a function to a vector
+> list_rast
+ total<-341292
+> propagri<-34710/total
+> propforest<-306582/total
+> cover<-c("Forest","Agriculture")
+> prop1992<-c(propforest,propagri)
+> proportion1992<-data.frame(cover,prop1992)
+> ggplot(proportion1992, aes(x=cover,y=prop1992, color=cover)+geom_bar(stat="identity", fill="white")
+> total2006<-342726
+> propagri2006<-163352/total2006
+> propforest2006<-179374/total2006
+> cover<-c("Forest", "Agriculture")
+> prop1992<-c(propforest,propagri)
+> prop2006<-c(propforest2006,propagri2006)
+> proportion<-data.frame(cover, prop1992, prop2006)
+> proportion
+> proportion<-data.frame(cover, prop1992,prop2006)
+> proportion
+> p1<-ggplot(proportion,aes(x=cover, y=prop1992, color=cover))+geom_bar(stat="identity", fill="white") + ylim(0,1)
+> p2 <- ggplot(proportion, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0,1)
+> p1<-ggplot(proportion,aes(x=cover, y=prop1992, color=cover))+geom_bar(stat="identity", fill="white") + ylim(0,1)
+> p2 <- ggplot(proportion, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0,1)
+> install.packages("patchwork")
+> p1+p2
+> l1992<-list_rast[[1]]
+> l1992
+> p1/p2
+> p1/p2 #one graph ontop of another
+> plot(l1992,r=1, g=2, b=3, stretch="Lin")
+> ggRGB(l1992, r=1, g=2, b=3)
+> ggRGB(l1992, r=1, g=2, b=3, stretch="lin")
+> ggRGB(l1992, r=1, g=2, b=3, stretch="hist")
+> ggRGB(l1992, r=1, g=2, b=3, stretch="sqrt")
+> ggRGB(l1992, r=1, g=2, b=3, stretch="log")
+> #with patchwork
+> gp1<-ggRGB(l1992, r=1, g=2, b=3, stretch="lin")
+> gp2<-ggRGB(l1992, r=1, g=2, b=3, stretch="hist")
+> gp3<-ggRGB(l1992, r=1, g=2, b=3, stretch="sqrt")
+> gp4<-ggRGB(l1992, r=1, g=2, b=3, stretch="log")
+> gp1+gp2+gp3+gp4
+> l2006<- list_rast[[2]]
+> gp1<-ggRGB(l1992,r=1,g=2,b=3)
+> gp5<-ggRGB(l2006,r=1,g=2,b=3)
+> gp1+gp5
